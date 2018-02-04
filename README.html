@@ -358,11 +358,19 @@
 
 
     
-        <section class="youyan" id="comments">
-  <div id="uyan_frame"></div>
-  <script src="http://v2.uyan.cc/code/uyan.js?uid=2157148"></script>
-</section>
-	
+        <div id="gitments"></div>
+<script src="/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      owner: 'faster-snail',
+      repo: 'faster-snail.github.io',
+      oauth: {
+        client_id: '2466932184cb7ddb5316',
+        client_secret: 'bca63e30d1ecedb8cc3eafdb1df448a8c5b592a8',
+      },
+    })
+    gitment.render('gitments')
+</script>
     
 
 
