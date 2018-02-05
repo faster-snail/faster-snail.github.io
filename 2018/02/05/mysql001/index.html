@@ -5,15 +5,16 @@
   
   <title>搞运维小站博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本博客自18年二月创建于github之上，省成本才是硬道理，如同linux运维职责，本站域名blog.gaoyunwei.com 自心血来潮注册之后第一次认真对待，本博客自二月起，定时更新分享linux文章，关注本博客，你可能有所收获。">
-<meta property="og:type" content="website">
+  <meta name="description" content="title: mysql简单介绍date: 2/5/2018 8:33:17 AMcategories: mysqltags: mysql description: mysql 的逻辑结构 mysql 存储结构 msyql的链接 数据库的启动方式mysql 的逻辑结构库 （database scheme(计划)）表 （行和列定义）（table）  行： 数据行，需要获取的数据 列定义：1.数据的">
+<meta property="og:type" content="article">
 <meta property="og:title" content="搞运维小站博客">
-<meta property="og:url" content="http://faster-snail.github.io/index.html">
+<meta property="og:url" content="http://faster-snail.github.io/2018/02/05/mysql001/index.html">
 <meta property="og:site_name" content="搞运维小站博客">
-<meta property="og:description" content="本博客自18年二月创建于github之上，省成本才是硬道理，如同linux运维职责，本站域名blog.gaoyunwei.com 自心血来潮注册之后第一次认真对待，本博客自二月起，定时更新分享linux文章，关注本博客，你可能有所收获。">
+<meta property="og:description" content="title: mysql简单介绍date: 2/5/2018 8:33:17 AMcategories: mysqltags: mysql description: mysql 的逻辑结构 mysql 存储结构 msyql的链接 数据库的启动方式mysql 的逻辑结构库 （database scheme(计划)）表 （行和列定义）（table）  行： 数据行，需要获取的数据 列定义：1.数据的">
+<meta property="og:updated_time" content="2018-02-05T01:57:38.938Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搞运维小站博客">
-<meta name="twitter:description" content="本博客自18年二月创建于github之上，省成本才是硬道理，如同linux运维职责，本站域名blog.gaoyunwei.com 自心血来潮注册之后第一次认真对待，本博客自二月起，定时更新分享linux文章，关注本博客，你可能有所收获。">
+<meta name="twitter:description" content="title: mysql简单介绍date: 2/5/2018 8:33:17 AMcategories: mysqltags: mysql description: mysql 的逻辑结构 mysql 存储结构 msyql的链接 数据库的启动方式mysql 的逻辑结构库 （database scheme(计划)）表 （行和列定义）（table）  行： 数据行，需要获取的数据 列定义：1.数据的">
   
     <link rel="alternative" href="/atom.xml" title="搞运维小站博客" type="application/atom+xml">
   
@@ -27,9 +28,6 @@
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   
-    
-    
-  
   
       <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
   
@@ -41,8 +39,8 @@
           rootUrl: '/',
           fancybox: true,
           animate: true,
-          isHome: true,
-          isPost: false,
+          isHome: false,
+          isPost: true,
           isArchive: false,
           isTag: false,
           isCategory: false,
@@ -230,9 +228,7 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-mysql001" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-mysql001" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2018/02/05/mysql001/" class="article-date">
@@ -248,7 +244,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <hr>
+		  
+		  
+        <hr>
 <p>title: mysql简单介绍<br>date: 2/5/2018 8:33:17 AM<br>categories: mysql<br>tags: mysql</p>
 <h2 id="description-mysql-的逻辑结构-mysql-存储结构-msyql的链接-数据库的启动方式"><a href="#description-mysql-的逻辑结构-mysql-存储结构-msyql的链接-数据库的启动方式" class="headerlink" title="description: mysql 的逻辑结构 mysql 存储结构 msyql的链接 数据库的启动方式"></a>description: mysql 的逻辑结构 mysql 存储结构 msyql的链接 数据库的启动方式</h2><h2 id="mysql-的逻辑结构"><a href="#mysql-的逻辑结构" class="headerlink" title="mysql 的逻辑结构"></a>mysql 的逻辑结构</h2><p>库 （database scheme(计划)）<br>表 （行和列定义）（table）</p>
 <ul>
@@ -256,166 +254,245 @@
 <li>列定义：<br>1.数据的含义（列名字来定义）<br>2.数据的约束（数据类型，str,int …,特殊属性（非空，唯一））<br>可以有很多个库<br>每个库可能会有很多个表</li>
 </ul>
 <h2 id="mysql-存储结构"><a href="#mysql-存储结构" class="headerlink" title="mysql 存储结构"></a>mysql 存储结构</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@db02 data]<span class="comment"># ls</span></span><br><span class="line">auto.cnf  db02.pid  ib_logfile0  mysql</span><br><span class="line">db02.err  ibdata1   ib_logfile1  performance_schema</span><br></pre></td></tr></table></figure>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
+<a id="more"></a>
+<p>auto.cnf MySQL实例唯一id号，mysql集群中用<br>db02.pid msyql pid进程号存放文件<br>db02.err 错误日志存放文件<br>ibdata1：（共享表空间数据文件）</p>
+<ul>
+<li>表空间（相当于LVM）扩展表空间可以使用，目前mysql自动可以扩充，不用理会就行</li>
+<li>数据文件 （段，区，页）<br>ib_logfile0 日志文件 （redo日志）<br>ib_logfile1 </li>
+</ul>
+<p>系统库：</p>
+<ul>
+<li><p>mysql 系统的验证相关的库<br>  —user.frm 表结构定义文件<br>  —user.MYD 数据文件<br>  —user.MYI 索引文件<br>  <em>（注意：不同的存储引擎产生的文件可能不一样）</em></p>
+</li>
+<li><p>performance_schema 系统的关于辅助优化的视图库</p>
+</li>
+<li>information_scheme 查询元数据的视图库（虚拟的，操作系统层看不见）</li>
+<li>用户库：<br>如wordpress等网站程序生成的库数据用户库</li>
+</ul>
+<h2 id="msyql的链接"><a href="#msyql的链接" class="headerlink" title="msyql的链接"></a>msyql的链接</h2><p>工具命令</p>
+<ul>
+<li>mysql<br>–help 查询帮助<br>-u 用户<br>-p 密码<br>-h [ip地址]<br>-P [端口号]<br>–protocol(指定协议类型 tcp udp)<br>-s socket (默认编译进命令中了)<br>（mysql -user root -password 123 -port 3306 长格式）</li>
+<li><p>mysqladmin ：修改密码常用<br>参数类似mysql</p>
+</li>
+<li><p>mysqldump :数据库备份</p>
+</li>
+</ul>
+<h2 id="数据库的启动方式"><a href="#数据库的启动方式" class="headerlink" title="数据库的启动方式"></a>数据库的启动方式</h2><p>过程：</p>
+<ul>
+<li>启动后台进程（mysqld）</li>
+<li>分配线程</li>
+<li>预分配内存空间</li>
+<li>加载数据文件</li>
+</ul>
+<p>启动方式：</p>
+<ol>
+<li>mysql.server (/etc/init.d/mysqld)</li>
+<li>bin/mysqld_safe &amp; —启动脚本<br>/etc/init.d/mysqld 启动的时候会调用bin/mysql_safe 脚本</li>
+</ol>
+<p>关闭方式：<br><em>注意：尽量不要使用kill</em></p>
+<ol>
+<li>使用mysqladmin -uroot -p123 -P[端口] shutdown （多实例）</li>
+<li>使用/etc/init.d/mysqld stop (单实例)</li>
+</ol>
+<p><em>小知识：perror命令，加上错误代码可以简单看到错误信息</em></p>
+<h2 id="mysql初始化配置文件"><a href="#mysql初始化配置文件" class="headerlink" title="mysql初始化配置文件"></a>mysql初始化配置文件</h2><p>问题：</p>
+<ul>
+<li>到哪里找数据？</li>
+<li>我的程序在哪里？</li>
+<li>将来启动的时候状态信息和错误信息放哪里？</li>
+</ul>
+<p>解决方法：</p>
+<ol>
+<li>预编译的时候直接硬编码到二进制程序中</li>
+<li>修改配置文件</li>
+<li>命令行选项<br> –直接在命令中加上参数指定各种存放位置比如指定数据存放位置，数据库的位置，sockert的位置</li>
+</ol>
 
       
       
-        <p class="article-more-link">
-          <a  href="/2018/02/05/mysql001/#more">就这篇，看更多 >></a>
-        </p>
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>对你有用？</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
       
-      <div class="clearfix"></div>
     </div>
     
   </div>
   
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/02/05/mysql001/"></a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Faster Snail 的个人博客">Faster Snail</a></p>
+        <p><span>发布时间:</span>2018年02月05日 - 09时58分</p>
+        <p><span>最后更新:</span>2018年02月05日 - 09时57分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/02/05/mysql001/" title="">http://faster-snail.github.io/2018/02/05/mysql001/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://faster-snail.github.io/2018/02/05/mysql001/　　作者: Faster Snail" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2018/02/03/mysql-install/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MySQL Installer在Windows平台(Win10)上安装MySQL</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
 
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#description-mysql-的逻辑结构-mysql-存储结构-msyql的链接-数据库的启动方式"><span class="toc-number">1.</span> <span class="toc-text">description: mysql 的逻辑结构 mysql 存储结构 msyql的链接 数据库的启动方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql-的逻辑结构"><span class="toc-number">2.</span> <span class="toc-text">mysql 的逻辑结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql-存储结构"><span class="toc-number">3.</span> <span class="toc-text">mysql 存储结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#msyql的链接"><span class="toc-number">4.</span> <span class="toc-text">msyql的链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库的启动方式"><span class="toc-number">5.</span> <span class="toc-text">数据库的启动方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql初始化配置文件"><span class="toc-number">6.</span> <span class="toc-text">mysql初始化配置文件</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
 
 
 
 
 
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 
 
 
-  
-    <article id="post-mysql-install" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/02/03/mysql-install/" class="article-date">
-      <time datetime="2018-02-03T12:30:16.000Z" itemprop="datePublished">2018-02-03</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
+
     
-      <input type="hidden" class="isFancy" />
+        <div id="gitments"></div>
+<script src="/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      owner: 'faster-snail',
+      repo: 'faster-snail.github.io',
+      oauth: {
+        client_id: '2466932184cb7ddb5316',
+        client_secret: 'df633d002a7f3d4306a762f7b9df83945888cbc4',
+      },
+    })
+    gitment.render('gitments')
+</script>
     
-    
-      <header class="article-header">
+
+
+
+    <div class="scroll" id="post-nav-button">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/03/mysql-install/">MySQL Installer在Windows平台(Win10)上安装MySQL</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              本教程将介绍如何使用MySQL Installer在Windows平台(Win10)上安装MySQL。在学习并按照本教程所示的步骤操作之后，您将有一个MySQL数据库服务器在您的系统中，并以此MySQL数据库服务器为基础，运行相关工具来学习和实践MySQL。
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/mysql/">mysql</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2018/02/03/mysql-install/#more">就这篇，看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/02/03/hello-world/" class="article-date">
-      <time datetime="2018-02-03T11:08:23.453Z" itemprop="datePublished">2018-02-03</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/03/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-          
-      
-      
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/02/03/mysql-install/" title="下一篇: MySQL Installer在Windows平台(Win10)上安装MySQL">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a  href="/2018/02/03/hello-world/#more">就这篇，看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/02/05/mysql001/">mysql001</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/03/mysql-install/">MySQL Installer在Windows平台(Win10)上安装MySQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/03/hello-world/">Hello World</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
 
 
 
-
-
-  
-  
-
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
