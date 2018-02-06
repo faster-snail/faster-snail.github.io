@@ -234,78 +234,6 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-mysql001" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/02/05/mysql001/" class="article-date">
-      <time datetime="2018-02-05T00:33:17.000Z" itemprop="datePublished">2018-02-05</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/05/mysql001/">mysql简单介绍</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="mysql-的逻辑结构"><a href="#mysql-的逻辑结构" class="headerlink" title="mysql 的逻辑结构"></a>mysql 的逻辑结构</h2><p>库 （database scheme(计划)）<br>表 （行和列定义）（table）</p>
-<ul>
-<li>行： 数据行，需要获取的数据</li>
-<li>列定义：<br>1.数据的含义（列名字来定义）<br>2.数据的约束（数据类型，str,int …,特殊属性（非空，唯一））<br>可以有很多个库<br>每个库可能会有很多个表</li>
-</ul>
-<h2 id="mysql-存储结构"><a href="#mysql-存储结构" class="headerlink" title="mysql 存储结构"></a>mysql 存储结构</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@db02 data]<span class="comment"># ls</span></span><br><span class="line">auto.cnf  db02.pid  ib_logfile0  mysql</span><br><span class="line">db02.err  ibdata1   ib_logfile1  performance_schema</span><br></pre></td></tr></table></figure>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/mysql/">mysql</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2018/02/05/mysql001/#more">就这篇，看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-mysqlDMl" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -360,6 +288,78 @@
       
         <p class="article-more-link">
           <a  href="/2018/02/05/mysqlDMl/#more">就这篇，看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-mysql_deletejiqiao" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/02/05/mysql_deletejiqiao/" class="article-date">
+      <time datetime="2018-02-05T00:33:17.000Z" itemprop="datePublished">2018-02-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/05/mysql_deletejiqiao/">mysql delete小技巧</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>企业使用delete中，最危险的就是误删除数据，所以，我们要熟悉删除行的技巧。</p>
+<ol>
+<li>一定要使用where 避免删除全部数据。</li>
+<li>伪删除，让业务以为数据不在了，可以通过枚举类型来进行操作<h2 id="伪删除原理"><a href="#伪删除原理" class="headerlink" title="伪删除原理"></a>伪删除原理</h2></li>
+</ol>
+<p>在原来的表中添加一列，名为state 类型约束为enum (1,0) 查询的时候，使用where state来进行选择<br>如果state=’1’ 业务存在，如果state=’0’ 业务已删除<br>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/mysql/">mysql</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2018/02/05/mysql_deletejiqiao/#more">就这篇，看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -445,10 +445,10 @@
 
 
   
-    <article id="post-mysql_deletejiqiao" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-mysql001" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/02/05/mysql_deletejiqiao/" class="article-date">
+      <a href="/2018/02/05/mysql001/" class="article-date">
       <time datetime="2018-02-05T00:33:17.000Z" itemprop="datePublished">2018-02-05</time>
 </a>
     </div>
@@ -462,7 +462,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/05/mysql_deletejiqiao/">mysql delete小技巧</a>
+      <a class="article-title" href="/2018/02/05/mysql001/">mysql简单介绍</a>
     </h1>
   
 
@@ -472,19 +472,13 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-		  
-		  
-        <p>企业使用delete中，最危险的就是误删除数据，所以，我们要熟悉删除行的技巧。</p>
-<ol>
-<li>一定要使用where 避免删除全部数据。</li>
-<li>伪删除，让业务以为数据不在了，可以通过枚举类型来进行操作<h2 id="伪删除原理"><a href="#伪删除原理" class="headerlink" title="伪删除原理"></a>伪删除原理</h2></li>
-</ol>
-<p>在原来的表中添加一列，名为state 类型约束为enum (1,0) 查询的时候，使用where state来进行选择<br>如果state=’1’ 业务存在，如果state=’0’ 业务已删除<br>实例原数据如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from city <span class="built_in">limit</span> 10;</span><br><span class="line">+----+----------------+-------------+---------------+------------+</span><br><span class="line">| ID | Name           | CountryCode | District      | Population |</span><br><span class="line">+----+----------------+-------------+---------------+------------+</span><br><span class="line">|  1 | Kabul          | AFG         | Kabol         |    1780000 |</span><br><span class="line">|  2 | Qandahar       | AFG         | Qandahar      |     237500 |</span><br><span class="line">|  3 | Herat          | AFG         | Herat         |     186800 |</span><br><span class="line">|  4 | Mazar<span class="_">-e</span>-Sharif | AFG         | Balkh         |     127800 |</span><br><span class="line">|  5 | Amsterdam      | NLD         | Noord-Holland |     731200 |</span><br><span class="line">|  6 | Rotterdam      | NLD         | Zuid-Holland  |     593321 |</span><br><span class="line">|  7 | Haag           | NLD         | Zuid-Holland  |     440900 |</span><br><span class="line">|  8 | Utrecht        | NLD         | Utrecht       |     234323 |</span><br><span class="line">|  9 | Eindhoven      | NLD         | Noord-Brabant |     201843 |</span><br><span class="line">| 10 | Tilburg        | NLD         | Noord-Brabant |     193238 |</span><br><span class="line">+----+----------------+-------------+---------------+------------+</span><br><span class="line">10 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure></p>
-<h2 id="添加一个state列"><a href="#添加一个state列" class="headerlink" title="添加一个state列"></a>添加一个state列</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; alter table city add column state enum(<span class="string">'1'</span>,<span class="string">'0'</span>);</span><br><span class="line">Query OK, 0 rows affected (0.13 sec)</span><br><span class="line">Records: 0  Duplicates: 0  Warnings: 0</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from city <span class="built_in">limit</span> 10;</span><br><span class="line">+----+----------------+-------------+---------------+------------+-------+</span><br><span class="line">| ID | Name           | CountryCode | District      | Population | state |</span><br><span class="line">+----+----------------+-------------+---------------+------------+-------+</span><br><span class="line">|  1 | Kabul          | AFG         | Kabol         |    1780000 | NULL  |</span><br><span class="line">|  2 | Qandahar       | AFG         | Qandahar      |     237500 | NULL  |</span><br><span class="line">|  3 | Herat          | AFG         | Herat         |     186800 | NULL  |</span><br><span class="line">|  4 | Mazar<span class="_">-e</span>-Sharif | AFG         | Balkh         |     127800 | NULL  |</span><br><span class="line">|  5 | Amsterdam      | NLD         | Noord-Holland |     731200 | NULL  |</span><br><span class="line">|  6 | Rotterdam      | NLD         | Zuid-Holland  |     593321 | NULL  |</span><br><span class="line">|  7 | Haag           | NLD         | Zuid-Holland  |     440900 | NULL  |</span><br><span class="line">|  8 | Utrecht        | NLD         | Utrecht       |     234323 | NULL  |</span><br><span class="line">|  9 | Eindhoven      | NLD         | Noord-Brabant |     201843 | NULL  |</span><br><span class="line">| 10 | Tilburg        | NLD         | Noord-Brabant |     193238 | NULL  |</span><br><span class="line">+----+----------------+-------------+---------------+------------+-------+</span><br><span class="line">10 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h2 id="设置state-’1’业务存在"><a href="#设置state-’1’业务存在" class="headerlink" title="设置state=’1’业务存在"></a>设置state=’1’业务存在</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; update city <span class="built_in">set</span> state=<span class="string">'1'</span>;</span><br><span class="line">Query OK, 4079 rows affected (0.06 sec)</span><br><span class="line">Rows matched: 4079  Changed: 4079  Warnings: 0</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from city <span class="built_in">where</span> state=1 <span class="built_in">limit</span> 10;</span><br><span class="line">+----+----------------+-------------+---------------+------------+-------+</span><br><span class="line">| ID | Name           | CountryCode | District      | Population | state |</span><br><span class="line">+----+----------------+-------------+---------------+------------+-------+</span><br><span class="line">|  1 | Kabul          | AFG         | Kabol         |    1780000 | 1     |</span><br><span class="line">|  2 | Qandahar       | AFG         | Qandahar      |     237500 | 1     |</span><br><span class="line">|  3 | Herat          | AFG         | Herat         |     186800 | 1     |</span><br><span class="line">|  4 | Mazar<span class="_">-e</span>-Sharif | AFG         | Balkh         |     127800 | 1     |</span><br><span class="line">|  5 | Amsterdam      | NLD         | Noord-Holland |     731200 | 1     |</span><br><span class="line">|  6 | Rotterdam      | NLD         | Zuid-Holland  |     593321 | 1     |</span><br><span class="line">|  7 | Haag           | NLD         | Zuid-Holland  |     440900 | 1     |</span><br><span class="line">|  8 | Utrecht        | NLD         | Utrecht       |     234323 | 1     |</span><br><span class="line">|  9 | Eindhoven      | NLD         | Noord-Brabant |     201843 | 1     |</span><br><span class="line">| 10 | Tilburg        | NLD         | Noord-Brabant |     193238 | 1     |</span><br><span class="line">+----+----------------+-------------+---------------+------------+-------+</span><br><span class="line">10 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h2 id="设置state-’0’-业务不存在"><a href="#设置state-’0’-业务不存在" class="headerlink" title="设置state=’0’ 业务不存在"></a>设置state=’0’ 业务不存在</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; update city <span class="built_in">set</span> state=<span class="string">'0'</span>;</span><br><span class="line">Query OK, 4079 rows affected (0.01 sec)</span><br><span class="line">Rows matched: 4079  Changed: 4079  Warnings: 0</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from city <span class="built_in">where</span> state=1 <span class="built_in">limit</span> 10;</span><br><span class="line">Empty <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>可以看到根据select * from city where state=1 limit 10;这条语句来进行查询，如果想将业务<br>下线，只需要将state改为0即可下线，如果有需求，能很方便的重新上线。</p>
-
+              <h2 id="mysql-的逻辑结构"><a href="#mysql-的逻辑结构" class="headerlink" title="mysql 的逻辑结构"></a>mysql 的逻辑结构</h2><p>库 （database scheme(计划)）<br>表 （行和列定义）（table）</p>
+<ul>
+<li>行： 数据行，需要获取的数据</li>
+<li>列定义：<br>1.数据的含义（列名字来定义）<br>2.数据的约束（数据类型，str,int …,特殊属性（非空，唯一））<br>可以有很多个库<br>每个库可能会有很多个表</li>
+</ul>
+<h2 id="mysql-存储结构"><a href="#mysql-存储结构" class="headerlink" title="mysql 存储结构"></a>mysql 存储结构</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@db02 data]<span class="comment"># ls</span></span><br><span class="line">auto.cnf  db02.pid  ib_logfile0  mysql</span><br><span class="line">db02.err  ibdata1   ib_logfile1  performance_schema</span><br></pre></td></tr></table></figure>
+          
       
       
     </div>
@@ -502,6 +496,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a  href="/2018/02/05/mysql001/#more">就这篇，看更多 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
