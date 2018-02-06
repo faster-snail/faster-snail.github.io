@@ -232,6 +232,78 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-mysqlDMl" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/02/05/mysqlDMl/" class="article-date">
+      <time datetime="2018-02-05T00:33:17.000Z" itemprop="datePublished">2018-02-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/05/mysqlDMl/">mysql DML语句</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>DML：数据操作语言</p>
+<ul>
+<li>功能：对表的行信息进行操作处理（DDL类似于创建删除文件，修改文件属性，DML相当于给文件写内容，增删改查）</li>
+</ul>
+<h2 id="insert-插入数据"><a href="#insert-插入数据" class="headerlink" title="insert 插入数据"></a>insert 插入数据</h2><p>要根据列定义的属性等信息插入正确信息，比如非空列不能为空（老版本需要和into联合使用）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE SNAIL;</span><br><span class="line">USE SNAIL;</span><br><span class="line">CREATE TABLE <span class="built_in">test</span> (</span><br><span class="line">id int(4) NOT NULL AUTO_INCREMENT,</span><br><span class="line">name char(20) NOT NULL,</span><br><span class="line">PRIMARY KEY (id)</span><br><span class="line">);</span><br><span class="line">insert into <span class="built_in">test</span>(id,name) values(1,<span class="string">'snail'</span>);</span><br><span class="line">insert into <span class="built_in">test</span>(name) values(<span class="string">'oldgirl'</span>);</span><br><span class="line">insert into <span class="built_in">test</span> values(3,<span class="string">'inca'</span>);</span><br><span class="line">insert into <span class="built_in">test</span> values(4,<span class="string">'zuma'</span>),(5,<span class="string">'kaka'</span>);</span><br><span class="line">delete from <span class="built_in">test</span>;</span><br><span class="line">INSERT INTO `<span class="built_in">test</span>` VALUES (1,<span class="string">'snail'</span>),(2,<span class="string">'oldgirl'</span>),(3,<span class="string">'inca'</span>),(4,<span class="string">'zuma'</span>),(5,<span class="string">'kaka'</span>);</span><br></pre></td></tr></table></figure>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/mysql/">mysql</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2018/02/05/mysqlDMl/#more">就这篇，看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-mysql001" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
