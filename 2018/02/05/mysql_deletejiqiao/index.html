@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>mysql简单介绍 | 搞运维小站博客</title>
+  <title>mysql delete小技巧 | 搞运维小站博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="mysql 的逻辑结构库 （database scheme(计划)）表 （行和列定义）（table）  行： 数据行，需要获取的数据 列定义：1.数据的含义（列名字来定义）2.数据的约束（数据类型，str,int …,特殊属性（非空，唯一））可以有很多个库每个库可能会有很多个表  mysql 存储结构123[root@db02 data]# lsauto.cnf  db02.pid  ib_log">
+  <meta name="description" content="企业使用delete中，最危险的就是误删除数据，所以，我们要熟悉删除行的技巧。  一定要使用where 避免删除全部数据。 伪删除，让业务以为数据不在了，可以通过枚举类型来进行操作伪删除原理  在原来的表中添加一列，名为state 类型约束为enum (1,0) 查询的时候，使用where state来进行选择如果state=’1’ 业务存在，如果state=’0’ 业务已删除实例原数据如下：12">
 <meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mysql简单介绍">
-<meta property="og:url" content="http://faster-snail.github.io/2018/02/05/mysql001/index.html">
+<meta property="og:title" content="mysql delete小技巧">
+<meta property="og:url" content="http://faster-snail.github.io/2018/02/05/mysql_deletejiqiao/index.html">
 <meta property="og:site_name" content="搞运维小站博客">
-<meta property="og:description" content="mysql 的逻辑结构库 （database scheme(计划)）表 （行和列定义）（table）  行： 数据行，需要获取的数据 列定义：1.数据的含义（列名字来定义）2.数据的约束（数据类型，str,int …,特殊属性（非空，唯一））可以有很多个库每个库可能会有很多个表  mysql 存储结构123[root@db02 data]# lsauto.cnf  db02.pid  ib_log">
-<meta property="og:updated_time" content="2018-02-05T02:25:42.047Z">
+<meta property="og:description" content="企业使用delete中，最危险的就是误删除数据，所以，我们要熟悉删除行的技巧。  一定要使用where 避免删除全部数据。 伪删除，让业务以为数据不在了，可以通过枚举类型来进行操作伪删除原理  在原来的表中添加一列，名为state 类型约束为enum (1,0) 查询的时候，使用where state来进行选择如果state=’1’ 业务存在，如果state=’0’ 业务已删除实例原数据如下：12">
+<meta property="og:updated_time" content="2018-02-06T12:08:16.669Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mysql简单介绍">
-<meta name="twitter:description" content="mysql 的逻辑结构库 （database scheme(计划)）表 （行和列定义）（table）  行： 数据行，需要获取的数据 列定义：1.数据的含义（列名字来定义）2.数据的约束（数据类型，str,int …,特殊属性（非空，唯一））可以有很多个库每个库可能会有很多个表  mysql 存储结构123[root@db02 data]# lsauto.cnf  db02.pid  ib_log">
+<meta name="twitter:title" content="mysql delete小技巧">
+<meta name="twitter:description" content="企业使用delete中，最危险的就是误删除数据，所以，我们要熟悉删除行的技巧。  一定要使用where 避免删除全部数据。 伪删除，让业务以为数据不在了，可以通过枚举类型来进行操作伪删除原理  在原来的表中添加一列，名为state 类型约束为enum (1,0) 查询的时候，使用where state来进行选择如果state=’1’ 业务存在，如果state=’0’ 业务已删除实例原数据如下：12">
   
     <link rel="alternative" href="/atom.xml" title="搞运维小站博客" type="application/atom+xml">
   
@@ -231,10 +231,10 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-mysql001" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-mysql_deletejiqiao" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/02/05/mysql001/" class="article-date">
+      <a href="/2018/02/05/mysql_deletejiqiao/" class="article-date">
       <time datetime="2018-02-05T00:33:17.000Z" itemprop="datePublished">2018-02-05</time>
 </a>
     </div>
@@ -248,7 +248,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      mysql简单介绍
+      mysql delete小技巧
     </h1>
   
 
@@ -275,65 +275,16 @@
           
 		  
 		  
-        <h2 id="mysql-的逻辑结构"><a href="#mysql-的逻辑结构" class="headerlink" title="mysql 的逻辑结构"></a>mysql 的逻辑结构</h2><p>库 （database scheme(计划)）<br>表 （行和列定义）（table）</p>
-<ul>
-<li>行： 数据行，需要获取的数据</li>
-<li>列定义：<br>1.数据的含义（列名字来定义）<br>2.数据的约束（数据类型，str,int …,特殊属性（非空，唯一））<br>可以有很多个库<br>每个库可能会有很多个表</li>
-</ul>
-<h2 id="mysql-存储结构"><a href="#mysql-存储结构" class="headerlink" title="mysql 存储结构"></a>mysql 存储结构</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@db02 data]<span class="comment"># ls</span></span><br><span class="line">auto.cnf  db02.pid  ib_logfile0  mysql</span><br><span class="line">db02.err  ibdata1   ib_logfile1  performance_schema</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>auto.cnf MySQL实例唯一id号，mysql集群中用<br>db02.pid msyql pid进程号存放文件<br>db02.err 错误日志存放文件<br>ibdata1：（共享表空间数据文件）</p>
-<ul>
-<li>表空间（相当于LVM）扩展表空间可以使用，目前mysql自动可以扩充，不用理会就行</li>
-<li>数据文件 （段，区，页）<br>ib_logfile0 日志文件 （redo日志）<br>ib_logfile1 </li>
-</ul>
-<p>系统库：</p>
-<ul>
-<li><p>mysql 系统的验证相关的库<br>  —user.frm 表结构定义文件<br>  —user.MYD 数据文件<br>  —user.MYI 索引文件<br>  <em>（注意：不同的存储引擎产生的文件可能不一样）</em></p>
-</li>
-<li><p>performance_schema 系统的关于辅助优化的视图库</p>
-</li>
-<li>information_scheme 查询元数据的视图库（虚拟的，操作系统层看不见）</li>
-<li>用户库：<br>如wordpress等网站程序生成的库数据用户库</li>
-</ul>
-<h2 id="msyql的链接"><a href="#msyql的链接" class="headerlink" title="msyql的链接"></a>msyql的链接</h2><p>工具命令</p>
-<ul>
-<li>mysql<br>–help 查询帮助<br>-u 用户<br>-p 密码<br>-h [ip地址]<br>-P [端口号]<br>–protocol(指定协议类型 tcp udp)<br>-s socket (默认编译进命令中了)<br>（mysql -user root -password 123 -port 3306 长格式）</li>
-<li><p>mysqladmin ：修改密码常用<br>参数类似mysql</p>
-</li>
-<li><p>mysqldump :数据库备份</p>
-</li>
-</ul>
-<h2 id="数据库的启动方式"><a href="#数据库的启动方式" class="headerlink" title="数据库的启动方式"></a>数据库的启动方式</h2><p>过程：</p>
-<ul>
-<li>启动后台进程（mysqld）</li>
-<li>分配线程</li>
-<li>预分配内存空间</li>
-<li>加载数据文件</li>
-</ul>
-<p>启动方式：</p>
+        <p>企业使用delete中，最危险的就是误删除数据，所以，我们要熟悉删除行的技巧。</p>
 <ol>
-<li>mysql.server (/etc/init.d/mysqld)</li>
-<li>bin/mysqld_safe &amp; —启动脚本<br>/etc/init.d/mysqld 启动的时候会调用bin/mysql_safe 脚本</li>
+<li>一定要使用where 避免删除全部数据。</li>
+<li>伪删除，让业务以为数据不在了，可以通过枚举类型来进行操作<h2 id="伪删除原理"><a href="#伪删除原理" class="headerlink" title="伪删除原理"></a>伪删除原理</h2></li>
 </ol>
-<p>关闭方式：<br><em>注意：尽量不要使用kill</em></p>
-<ol>
-<li>使用mysqladmin -uroot -p123 -P[端口] shutdown （多实例）</li>
-<li>使用/etc/init.d/mysqld stop (单实例)</li>
-</ol>
-<p><em>小知识：perror命令，加上错误代码可以简单看到错误信息</em></p>
-<h2 id="mysql初始化配置文件"><a href="#mysql初始化配置文件" class="headerlink" title="mysql初始化配置文件"></a>mysql初始化配置文件</h2><p>问题：</p>
-<ul>
-<li>到哪里找数据？</li>
-<li>我的程序在哪里？</li>
-<li>将来启动的时候状态信息和错误信息放哪里？</li>
-</ul>
-<p>解决方法：</p>
-<ol>
-<li>预编译的时候直接硬编码到二进制程序中</li>
-<li>修改配置文件</li>
-<li>命令行选项<br> –直接在命令中加上参数指定各种存放位置比如指定数据存放位置，数据库的位置，sockert的位置</li>
-</ol>
+<p>在原来的表中添加一列，名为state 类型约束为enum (1,0) 查询的时候，使用where state来进行选择<br>如果state=’1’ 业务存在，如果state=’0’ 业务已删除<br>实例原数据如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from city <span class="built_in">limit</span> 10;</span><br><span class="line">+----+----------------+-------------+---------------+------------+</span><br><span class="line">| ID | Name           | CountryCode | District      | Population |</span><br><span class="line">+----+----------------+-------------+---------------+------------+</span><br><span class="line">|  1 | Kabul          | AFG         | Kabol         |    1780000 |</span><br><span class="line">|  2 | Qandahar       | AFG         | Qandahar      |     237500 |</span><br><span class="line">|  3 | Herat          | AFG         | Herat         |     186800 |</span><br><span class="line">|  4 | Mazar<span class="_">-e</span>-Sharif | AFG         | Balkh         |     127800 |</span><br><span class="line">|  5 | Amsterdam      | NLD         | Noord-Holland |     731200 |</span><br><span class="line">|  6 | Rotterdam      | NLD         | Zuid-Holland  |     593321 |</span><br><span class="line">|  7 | Haag           | NLD         | Zuid-Holland  |     440900 |</span><br><span class="line">|  8 | Utrecht        | NLD         | Utrecht       |     234323 |</span><br><span class="line">|  9 | Eindhoven      | NLD         | Noord-Brabant |     201843 |</span><br><span class="line">| 10 | Tilburg        | NLD         | Noord-Brabant |     193238 |</span><br><span class="line">+----+----------------+-------------+---------------+------------+</span><br><span class="line">10 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<h2 id="添加一个state列"><a href="#添加一个state列" class="headerlink" title="添加一个state列"></a>添加一个state列</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; alter table city add column state enum(<span class="string">'1'</span>,<span class="string">'0'</span>);</span><br><span class="line">Query OK, 0 rows affected (0.13 sec)</span><br><span class="line">Records: 0  Duplicates: 0  Warnings: 0</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from city <span class="built_in">limit</span> 10;</span><br><span class="line">+----+----------------+-------------+---------------+------------+-------+</span><br><span class="line">| ID | Name           | CountryCode | District      | Population | state |</span><br><span class="line">+----+----------------+-------------+---------------+------------+-------+</span><br><span class="line">|  1 | Kabul          | AFG         | Kabol         |    1780000 | NULL  |</span><br><span class="line">|  2 | Qandahar       | AFG         | Qandahar      |     237500 | NULL  |</span><br><span class="line">|  3 | Herat          | AFG         | Herat         |     186800 | NULL  |</span><br><span class="line">|  4 | Mazar<span class="_">-e</span>-Sharif | AFG         | Balkh         |     127800 | NULL  |</span><br><span class="line">|  5 | Amsterdam      | NLD         | Noord-Holland |     731200 | NULL  |</span><br><span class="line">|  6 | Rotterdam      | NLD         | Zuid-Holland  |     593321 | NULL  |</span><br><span class="line">|  7 | Haag           | NLD         | Zuid-Holland  |     440900 | NULL  |</span><br><span class="line">|  8 | Utrecht        | NLD         | Utrecht       |     234323 | NULL  |</span><br><span class="line">|  9 | Eindhoven      | NLD         | Noord-Brabant |     201843 | NULL  |</span><br><span class="line">| 10 | Tilburg        | NLD         | Noord-Brabant |     193238 | NULL  |</span><br><span class="line">+----+----------------+-------------+---------------+------------+-------+</span><br><span class="line">10 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h2 id="设置state-’1’业务存在"><a href="#设置state-’1’业务存在" class="headerlink" title="设置state=’1’业务存在"></a>设置state=’1’业务存在</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; update city <span class="built_in">set</span> state=<span class="string">'1'</span>;</span><br><span class="line">Query OK, 4079 rows affected (0.06 sec)</span><br><span class="line">Rows matched: 4079  Changed: 4079  Warnings: 0</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from city <span class="built_in">where</span> state=1 <span class="built_in">limit</span> 10;</span><br><span class="line">+----+----------------+-------------+---------------+------------+-------+</span><br><span class="line">| ID | Name           | CountryCode | District      | Population | state |</span><br><span class="line">+----+----------------+-------------+---------------+------------+-------+</span><br><span class="line">|  1 | Kabul          | AFG         | Kabol         |    1780000 | 1     |</span><br><span class="line">|  2 | Qandahar       | AFG         | Qandahar      |     237500 | 1     |</span><br><span class="line">|  3 | Herat          | AFG         | Herat         |     186800 | 1     |</span><br><span class="line">|  4 | Mazar<span class="_">-e</span>-Sharif | AFG         | Balkh         |     127800 | 1     |</span><br><span class="line">|  5 | Amsterdam      | NLD         | Noord-Holland |     731200 | 1     |</span><br><span class="line">|  6 | Rotterdam      | NLD         | Zuid-Holland  |     593321 | 1     |</span><br><span class="line">|  7 | Haag           | NLD         | Zuid-Holland  |     440900 | 1     |</span><br><span class="line">|  8 | Utrecht        | NLD         | Utrecht       |     234323 | 1     |</span><br><span class="line">|  9 | Eindhoven      | NLD         | Noord-Brabant |     201843 | 1     |</span><br><span class="line">| 10 | Tilburg        | NLD         | Noord-Brabant |     193238 | 1     |</span><br><span class="line">+----+----------------+-------------+---------------+------------+-------+</span><br><span class="line">10 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h2 id="设置state-’0’-业务不存在"><a href="#设置state-’0’-业务不存在" class="headerlink" title="设置state=’0’ 业务不存在"></a>设置state=’0’ 业务不存在</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; update city <span class="built_in">set</span> state=<span class="string">'0'</span>;</span><br><span class="line">Query OK, 4079 rows affected (0.01 sec)</span><br><span class="line">Rows matched: 4079  Changed: 4079  Warnings: 0</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from city <span class="built_in">where</span> state=1 <span class="built_in">limit</span> 10;</span><br><span class="line">Empty <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>可以看到根据select * from city where state=1 limit 10;这条语句来进行查询，如果想将业务<br>下线，只需要将state改为0即可下线，如果有需求，能很方便的重新上线。</p>
 
       
       
@@ -389,13 +340,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/02/05/mysql001/">mysql简单介绍</a></p>
+        <p><span>本文标题:</span><a href="/2018/02/05/mysql_deletejiqiao/">mysql delete小技巧</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Faster Snail 的个人博客">Faster Snail</a></p>
         <p><span>发布时间:</span>2018年02月05日 - 08时33分</p>
-        <p><span>最后更新:</span>2018年02月05日 - 10时25分</p>
+        <p><span>最后更新:</span>2018年02月06日 - 20时08分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/02/05/mysql001/" title="mysql简单介绍">http://faster-snail.github.io/2018/02/05/mysql001/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://faster-snail.github.io/2018/02/05/mysql001/　　作者: Faster Snail" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/02/05/mysql_deletejiqiao/" title="mysql delete小技巧">http://faster-snail.github.io/2018/02/05/mysql_deletejiqiao/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://faster-snail.github.io/2018/02/05/mysql_deletejiqiao/　　作者: Faster Snail" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -408,9 +359,18 @@
 
 <nav id="article-nav">
   
+    <a href="/2018/02/05/mysql_order_by/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          mysql 表数据排序-ORDER BY
+        
+      </div>
+    </a>
   
-    <a href="/2018/02/05/mysqlDMl/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">mysql DML语句</div>
+  
+    <a href="/2018/02/03/mysql-install/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MySQL Installer在Windows平台(Win10)上安装MySQL</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -421,7 +381,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql-的逻辑结构"><span class="toc-number">1.</span> <span class="toc-text">mysql 的逻辑结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql-存储结构"><span class="toc-number">2.</span> <span class="toc-text">mysql 存储结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#msyql的链接"><span class="toc-number">3.</span> <span class="toc-text">msyql的链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库的启动方式"><span class="toc-number">4.</span> <span class="toc-text">数据库的启动方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql初始化配置文件"><span class="toc-number">5.</span> <span class="toc-text">mysql初始化配置文件</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#伪删除原理"><span class="toc-number">1.</span> <span class="toc-text">伪删除原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加一个state列"><span class="toc-number">2.</span> <span class="toc-text">添加一个state列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置state-’1’业务存在"><span class="toc-number">3.</span> <span class="toc-text">设置state=’1’业务存在</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置state-’0’-业务不存在"><span class="toc-number">4.</span> <span class="toc-text">设置state=’0’ 业务不存在</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -486,11 +446,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2018/02/05/mysql_order_by/" title="上一篇: mysql 表数据排序-ORDER BY">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2018/02/05/mysqlDMl/" title="下一篇: mysql DML语句">
+            <a href="/2018/02/03/mysql-install/" title="下一篇: MySQL Installer在Windows平台(Win10)上安装MySQL">
                 <i class="fa fa-angle-right"></i>
             </a>
         
