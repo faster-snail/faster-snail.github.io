@@ -3,23 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>MySQL Installer在Windows平台(Win10)上安装MySQL | 搞运维小站博客</title>
+  <title>mysql 表数据排序-ORDER BY | 搞运维小站博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本教程将介绍如何使用MySQL Installer在Windows平台(Win10)上安装MySQL。在学习并按照本教程所示的步骤操作之后，您将有一个MySQL数据库服务器在您的系统中，并以此MySQL数据库服务器为基础，运行相关工具来学习和实践MySQL。">
+  <meta name="description" content="使用ORDER BY进行排序12345678910111213141516171819202122232425mysql&amp;gt; select * from tt;+------+----------+| id   | name     |+------+----------+|    1 | zhangsan ||    3 | lisi     ||    5 | wangwu   ||">
 <meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL Installer在Windows平台(Win10)上安装MySQL">
-<meta property="og:url" content="http://faster-snail.github.io/2018/02/03/mysql-install/index.html">
+<meta property="og:title" content="mysql 表数据排序-ORDER BY">
+<meta property="og:url" content="http://faster-snail.github.io/2018/02/05/mysql-ORDER_BY/index.html">
 <meta property="og:site_name" content="搞运维小站博客">
-<meta property="og:description" content="本教程将介绍如何使用MySQL Installer在Windows平台(Win10)上安装MySQL。在学习并按照本教程所示的步骤操作之后，您将有一个MySQL数据库服务器在您的系统中，并以此MySQL数据库服务器为基础，运行相关工具来学习和实践MySQL。">
-<meta property="og:image" content="https://i.imgur.com/uPOuvtY.png">
-<meta property="og:image" content="https://i.imgur.com/VHqoUsM.png">
-<meta property="og:image" content="https://i.imgur.com/AUdcnn5.png">
-<meta property="og:updated_time" content="2018-02-03T12:46:26.838Z">
+<meta property="og:description" content="使用ORDER BY进行排序12345678910111213141516171819202122232425mysql&amp;gt; select * from tt;+------+----------+| id   | name     |+------+----------+|    1 | zhangsan ||    3 | lisi     ||    5 | wangwu   ||">
+<meta property="og:updated_time" content="2018-02-06T11:15:09.744Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySQL Installer在Windows平台(Win10)上安装MySQL">
-<meta name="twitter:description" content="本教程将介绍如何使用MySQL Installer在Windows平台(Win10)上安装MySQL。在学习并按照本教程所示的步骤操作之后，您将有一个MySQL数据库服务器在您的系统中，并以此MySQL数据库服务器为基础，运行相关工具来学习和实践MySQL。">
-<meta name="twitter:image" content="https://i.imgur.com/uPOuvtY.png">
+<meta name="twitter:title" content="mysql 表数据排序-ORDER BY">
+<meta name="twitter:description" content="使用ORDER BY进行排序12345678910111213141516171819202122232425mysql&amp;gt; select * from tt;+------+----------+| id   | name     |+------+----------+|    1 | zhangsan ||    3 | lisi     ||    5 | wangwu   ||">
   
     <link rel="alternative" href="/atom.xml" title="搞运维小站博客" type="application/atom+xml">
   
@@ -235,11 +231,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-mysql-install" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-mysql-ORDER_BY" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/02/03/mysql-install/" class="article-date">
-      <time datetime="2018-02-03T12:30:16.000Z" itemprop="datePublished">2018-02-03</time>
+      <a href="/2018/02/05/mysql-ORDER_BY/" class="article-date">
+      <time datetime="2018-02-05T00:33:17.000Z" itemprop="datePublished">2018-02-05</time>
 </a>
     </div>
   
@@ -252,7 +248,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      MySQL Installer在Windows平台(Win10)上安装MySQL
+      mysql 表数据排序-ORDER BY
     </h1>
   
 
@@ -279,35 +275,10 @@
           
 		  
 		  
-        <h1 id="下载MySQL安装程序"><a href="#下载MySQL安装程序" class="headerlink" title="下载MySQL安装程序"></a>下载MySQL安装程序</h1><p>这里想要说的是，安装MySQL的方式有好几种，由于文章篇幅的限制，这里只选定一种作为安装演示。具体的安装，可以按照你喜欢的方式来。只要有两种方式：</p>
-<p>在线安装版，下载：mysql-installer-web-community.exe<br>离线安装版，下载：mysql-installer-community.exe<br>解压缩版，下载：Windows (x86, 64-bit), ZIP Archive<br>上面的下载安装程序，可以从网址：<a href="http://dev.mysql.com/downloads/mysql/" title=" http://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener"> http://dev.mysql.com/downloads/mysql/</a> 找到。<br><a id="more"></a><br>如果要在Windows环境中安装MySQL，使用MySQL安装程序是最简单的方法。MySQL安装程序为您提供了一个易于使用的向导，可帮助您使用以下组件安装MySQL：</p>
-<ul>
-<li>MySQL服务器</li>
-<li>所有可用连接器</li>
-<li>具有示例数据模型的MySQL Workbench</li>
-<li>MySQL通知程序</li>
-<li>Excel和Microsoft Visual Studio的工具</li>
-<li>MySQL示例数据库</li>
-<li>MySQL文档</li>
-</ul>
-<p>现在，我们一步步来看，如何下载并安装 MySQL 服务器软件。</p>
-<h2 id="第一步：下载所需的安装包"><a href="#第一步：下载所需的安装包" class="headerlink" title="第一步：下载所需的安装包"></a>第一步：下载所需的安装包</h2><p>打开网址：<a href="http://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">http://dev.mysql.com/downloads/mysql/</a> ， 如下所示 -<br><img src="https://i.imgur.com/uPOuvtY.png" alt=""></p>
-<p>注：因为在编写本教程时，使用的是Win10 64位的操作系统，所以这里选择：Windows (x86, 64-bit), ZIP Archive 下载</p>
-<p>在弹出的第二个页面中，选择点击“No thanks, just start my download.” 跳过注册/登录帐号环节直接下载。如下图所示 -<br><img src="https://i.imgur.com/VHqoUsM.png" alt=""></p>
-<p>然后，耐心等待下载完成…</p>
-<h2 id="第二步：压缩到指定目录"><a href="#第二步：压缩到指定目录" class="headerlink" title="第二步：压缩到指定目录"></a>第二步：压缩到指定目录</h2><p>准备好一个安装 MySQL 程序的目录，如：D:/software</p>
-<p>在本教程中，您已经学会了如何使用MySQL安装程序在Windows系统中安装MySQL，下载MySQL示例数据库并将其加载到MySQL服务器中，以通过此MySQL教程练习和学习MySQL。</p>
-<p>这里解压后的目录为：D:\software\mysql-5.7.18-winx64 ， 此目录下的文件如下所示 -</p>
-<p><img src="https://i.imgur.com/AUdcnn5.png" alt=""></p>
-<h2 id="第三步：启动MySQL服务器"><a href="#第三步：启动MySQL服务器" class="headerlink" title="第三步：启动MySQL服务器"></a>第三步：启动MySQL服务器</h2><p>以管理员身份打开命令行，进入 MySQL 服务器安装的目录：D:\software\mysql-5.7.18-winx64\bin ，执行以下命令启动 MySQL -<br>Microsoft Windows [版本 10.0.10586]<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(c) 2015 Microsoft Corporation。保留所有权利。</span><br><span class="line">C:\WINDOWS\system32&gt;D:</span><br><span class="line">D:\&gt;<span class="built_in">cd</span> software\mysql-5.7.18-winx64\bin</span><br><span class="line">D:\software\mysql-5.7.18-winx64\bin&gt;mysqld -install</span><br><span class="line">Service successfully installed.</span><br><span class="line">D:\software\mysql-5.7.18-winx64\bin&gt;net start mysql</span><br><span class="line">MySQL 服务正在启动 ..</span><br><span class="line">MySQL 服务已经启动成功。</span><br><span class="line">D:\software\mysql-5.7.18-winx64\bin&gt;</span><br><span class="line">Shell</span><br></pre></td></tr></table></figure></p>
-<p>如果有提示如下错误 -<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">D:\software\mysql-5.7.18-winx64\bin&gt; mysqld.exe</span><br><span class="line">mysqld: Can<span class="string">'t change dir to '</span>D:\software\mysql-5.7.18-winx64\data\<span class="string">' (Errcode: 2 - No such file or directory)</span></span><br><span class="line"><span class="string">2017-07-14T18:48:51.023897Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).</span></span><br><span class="line"><span class="string">... ...</span></span><br><span class="line"><span class="string">2017-07-14T18:48:51.039516Z 0 [Note] Binlog end</span></span><br><span class="line"><span class="string">2017-07-14T18:48:51.039516Z 0 [Note] mysqld.exe: Shutdown complete</span></span><br><span class="line"><span class="string">Shell</span></span><br><span class="line"><span class="string">上面错误提示中，已经说明了：</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> mysqld: Can<span class="string">'t change dir to '</span>D:\software\mysql-5.7.18-winx64\data\<span class="string">' (Errcode: 2 - No such file or directory)</span></span><br><span class="line"><span class="string">Shell</span></span><br></pre></td></tr></table></figure>
-<p>则需要在创建一个目录：D:\software\mysql-5.7.18-winx64\data\ ，现在我们就来创建这个目录，在创建目录完成后重新执行 mysqld -install 启动 MySQL 服务器 -</p>
-<p>一定要注意两个问题，切记！</p>
-<p>第一： 以管理员自身份打开CMD；<br>第二：用cd命令进入到你MySQL文件的解压路径。</p>
-<h2 id="第四步：连接MySQL服务器"><a href="#第四步：连接MySQL服务器" class="headerlink" title="第四步：连接MySQL服务器"></a>第四步：连接MySQL服务器</h2><p>服务启动成功之后，就可以连接/登录MySQL服务器了，打开命令提交符界面输入mysql -u root -p 或 mysql -h localhost -u root -p(第一次登录没有密码，直接按回车过),登录成功，但是登录成功后，不能执行任何操作，MySQL服务器要求您必须设置密码再执行其它操作。</p>
-<p>假设我们登录成功后，要查看当前目录下所数据名称(执行查询：show databases)，但它提示要先设置密码。完整的过程如下所示 -<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">D:\software\mysql-5.7.18-winx64\bin&gt;mysql -hlocalhost -uroot -p</span><br><span class="line">Enter password:</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 4</span><br><span class="line">Server version: 5.7.9</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type <span class="string">'help;'</span> or <span class="string">'\h'</span> <span class="keyword">for</span> <span class="built_in">help</span>. Type <span class="string">'\c'</span> to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt; show databases;</span><br><span class="line">ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.</span><br><span class="line">mysql&gt; ALTER USER <span class="string">'root'</span>@<span class="string">'localhost'</span> IDENTIFIED BY <span class="string">'123456'</span>;</span><br><span class="line">Query OK, 0 rows affected (0.08 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">+--------------------+</span><br><span class="line">6 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.11 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br><span class="line">Shell</span><br></pre></td></tr></table></figure></p>
-<p>有关解压包安装MySQl服务器就这样完成了~，如果想要使用在线安装的方式来安装MySQL，请参考： <a href="http://dev.mysql.com/doc/refman/5.7/en/mysql-installer.html" target="_blank" rel="noopener">http://dev.mysql.com/doc/refman/5.7/en/mysql-installer.html</a></p>
+        <h2 id="使用ORDER-BY进行排序"><a href="#使用ORDER-BY进行排序" class="headerlink" title="使用ORDER BY进行排序"></a>使用ORDER BY进行排序</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from tt;</span><br><span class="line">+------+----------+</span><br><span class="line">| id   | name     |</span><br><span class="line">+------+----------+</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    5 | wangwu   |</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    5 | wangwu   |</span><br><span class="line">+------+----------+</span><br><span class="line">6 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from tt order by id;</span><br><span class="line">+------+----------+</span><br><span class="line">| id   | name     |</span><br><span class="line">+------+----------+</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    5 | wangwu   |</span><br><span class="line">|    5 | wangwu   |</span><br><span class="line">+------+----------+</span><br><span class="line">6 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h2 id="使用desc降序排列"><a href="#使用desc降序排列" class="headerlink" title="使用desc降序排列"></a>使用desc降序排列</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from tt order by id desc;</span><br><span class="line">+------+----------+</span><br><span class="line">| id   | name     |</span><br><span class="line">+------+----------+</span><br><span class="line">|    5 | wangwu   |</span><br><span class="line">|    5 | wangwu   |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">+------+----------+</span><br><span class="line">6 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h2 id="只显示3行"><a href="#只显示3行" class="headerlink" title="只显示3行"></a>只显示3行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from tt order by id desc <span class="built_in">limit</span> 3;</span><br><span class="line">+------+--------+</span><br><span class="line">| id   | name   |</span><br><span class="line">+------+--------+</span><br><span class="line">|    5 | wangwu |</span><br><span class="line">|    5 | wangwu |</span><br><span class="line">|    3 | lisi   |</span><br><span class="line">+------+--------+</span><br><span class="line">3 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h2 id="跳过2行，显示三行"><a href="#跳过2行，显示三行" class="headerlink" title="跳过2行，显示三行"></a>跳过2行，显示三行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from tt order by id desc <span class="built_in">limit</span> 2,3;</span><br><span class="line">+------+----------+</span><br><span class="line">| id   | name     |</span><br><span class="line">+------+----------+</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">+------+----------+</span><br><span class="line">3 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
 
       
       
@@ -363,13 +334,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/02/03/mysql-install/">MySQL Installer在Windows平台(Win10)上安装MySQL</a></p>
+        <p><span>本文标题:</span><a href="/2018/02/05/mysql-ORDER_BY/">mysql 表数据排序-ORDER BY</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Faster Snail 的个人博客">Faster Snail</a></p>
-        <p><span>发布时间:</span>2018年02月03日 - 20时30分</p>
-        <p><span>最后更新:</span>2018年02月03日 - 20时46分</p>
+        <p><span>发布时间:</span>2018年02月05日 - 08时33分</p>
+        <p><span>最后更新:</span>2018年02月06日 - 19时15分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/02/03/mysql-install/" title="MySQL Installer在Windows平台(Win10)上安装MySQL">http://faster-snail.github.io/2018/02/03/mysql-install/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://faster-snail.github.io/2018/02/03/mysql-install/　　作者: Faster Snail" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/02/05/mysql-ORDER_BY/" title="mysql 表数据排序-ORDER BY">http://faster-snail.github.io/2018/02/05/mysql-ORDER_BY/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://faster-snail.github.io/2018/02/05/mysql-ORDER_BY/　　作者: Faster Snail" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -382,18 +353,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2018/02/05/mysqlDMl/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          mysql DML语句
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/02/03/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2018/02/05/mysql001/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">mysql简单介绍</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -404,7 +366,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#下载MySQL安装程序"><span class="toc-number">1.</span> <span class="toc-text">下载MySQL安装程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一步：下载所需的安装包"><span class="toc-number">1.1.</span> <span class="toc-text">第一步：下载所需的安装包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二步：压缩到指定目录"><span class="toc-number">1.2.</span> <span class="toc-text">第二步：压缩到指定目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三步：启动MySQL服务器"><span class="toc-number">1.3.</span> <span class="toc-text">第三步：启动MySQL服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四步：连接MySQL服务器"><span class="toc-number">1.4.</span> <span class="toc-text">第四步：连接MySQL服务器</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用ORDER-BY进行排序"><span class="toc-number">1.</span> <span class="toc-text">使用ORDER BY进行排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用desc降序排列"><span class="toc-number">2.</span> <span class="toc-text">使用desc降序排列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#只显示3行"><span class="toc-number">3.</span> <span class="toc-text">只显示3行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#跳过2行，显示三行"><span class="toc-number">4.</span> <span class="toc-text">跳过2行，显示三行</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -469,13 +431,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/02/05/mysqlDMl/" title="上一篇: mysql DML语句">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2018/02/03/hello-world/" title="下一篇: Hello World">
+            <a href="/2018/02/05/mysql001/" title="下一篇: mysql简单介绍">
                 <i class="fa fa-angle-right"></i>
             </a>
         
