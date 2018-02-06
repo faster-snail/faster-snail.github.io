@@ -234,74 +234,6 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-mysql-ORDER_BY" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/02/05/mysql-ORDER_BY/" class="article-date">
-      <time datetime="2018-02-05T00:33:17.000Z" itemprop="datePublished">2018-02-05</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/05/mysql-ORDER_BY/">mysql 表数据排序-ORDER BY</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-		  
-		  
-        <h2 id="使用ORDER-BY进行排序"><a href="#使用ORDER-BY进行排序" class="headerlink" title="使用ORDER BY进行排序"></a>使用ORDER BY进行排序</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from tt;</span><br><span class="line">+------+----------+</span><br><span class="line">| id   | name     |</span><br><span class="line">+------+----------+</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    5 | wangwu   |</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    5 | wangwu   |</span><br><span class="line">+------+----------+</span><br><span class="line">6 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from tt order by id;</span><br><span class="line">+------+----------+</span><br><span class="line">| id   | name     |</span><br><span class="line">+------+----------+</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    5 | wangwu   |</span><br><span class="line">|    5 | wangwu   |</span><br><span class="line">+------+----------+</span><br><span class="line">6 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h2 id="使用desc降序排列"><a href="#使用desc降序排列" class="headerlink" title="使用desc降序排列"></a>使用desc降序排列</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from tt order by id desc;</span><br><span class="line">+------+----------+</span><br><span class="line">| id   | name     |</span><br><span class="line">+------+----------+</span><br><span class="line">|    5 | wangwu   |</span><br><span class="line">|    5 | wangwu   |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">+------+----------+</span><br><span class="line">6 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h2 id="只显示3行"><a href="#只显示3行" class="headerlink" title="只显示3行"></a>只显示3行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from tt order by id desc <span class="built_in">limit</span> 3;</span><br><span class="line">+------+--------+</span><br><span class="line">| id   | name   |</span><br><span class="line">+------+--------+</span><br><span class="line">|    5 | wangwu |</span><br><span class="line">|    5 | wangwu |</span><br><span class="line">|    3 | lisi   |</span><br><span class="line">+------+--------+</span><br><span class="line">3 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h2 id="跳过2行，显示三行"><a href="#跳过2行，显示三行" class="headerlink" title="跳过2行，显示三行"></a>跳过2行，显示三行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from tt order by id desc <span class="built_in">limit</span> 2,3;</span><br><span class="line">+------+----------+</span><br><span class="line">| id   | name     |</span><br><span class="line">+------+----------+</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">+------+----------+</span><br><span class="line">3 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
-
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/mysql/">mysql</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-mysql001" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -429,6 +361,75 @@
         <p class="article-more-link">
           <a  href="/2018/02/05/mysqlDMl/#more">就这篇，看更多 >></a>
         </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-mysql_order_by" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/02/05/mysql_order_by/" class="article-date">
+      <time datetime="2018-02-05T00:33:17.000Z" itemprop="datePublished">2018-02-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/05/mysql_order_by/">mysql 表数据排序-ORDER BY</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+		  
+		  
+        <h2 id="使用ORDER-BY进行排序"><a href="#使用ORDER-BY进行排序" class="headerlink" title="使用ORDER BY进行排序"></a>使用ORDER BY进行排序</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from tt;</span><br><span class="line">+------+----------+</span><br><span class="line">| id   | name     |</span><br><span class="line">+------+----------+</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    5 | wangwu   |</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    5 | wangwu   |</span><br><span class="line">+------+----------+</span><br><span class="line">6 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line">mysql&gt; select * from tt order by id;</span><br><span class="line">+------+----------+</span><br><span class="line">| id   | name     |</span><br><span class="line">+------+----------+</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    5 | wangwu   |</span><br><span class="line">|    5 | wangwu   |</span><br><span class="line">+------+----------+</span><br><span class="line">6 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h2 id="使用desc降序排列"><a href="#使用desc降序排列" class="headerlink" title="使用desc降序排列"></a>使用desc降序排列</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from tt order by id desc;</span><br><span class="line">+------+----------+</span><br><span class="line">| id   | name     |</span><br><span class="line">+------+----------+</span><br><span class="line">|    5 | wangwu   |</span><br><span class="line">|    5 | wangwu   |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">+------+----------+</span><br><span class="line">6 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h2 id="使用asc正序排列"><a href="#使用asc正序排列" class="headerlink" title="使用asc正序排列"></a>使用asc正序排列</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from tt order by id asc;</span><br><span class="line">+------+----------+</span><br><span class="line">| id   | name     |</span><br><span class="line">+------+----------+</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    5 | wangwu   |</span><br><span class="line">|    5 | wangwu   |</span><br><span class="line">+------+----------+</span><br><span class="line">6 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h2 id="只显示3行"><a href="#只显示3行" class="headerlink" title="只显示3行"></a>只显示3行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from tt order by id desc <span class="built_in">limit</span> 3;</span><br><span class="line">+------+--------+</span><br><span class="line">| id   | name   |</span><br><span class="line">+------+--------+</span><br><span class="line">|    5 | wangwu |</span><br><span class="line">|    5 | wangwu |</span><br><span class="line">|    3 | lisi   |</span><br><span class="line">+------+--------+</span><br><span class="line">3 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h2 id="跳过2行，显示三行"><a href="#跳过2行，显示三行" class="headerlink" title="跳过2行，显示三行"></a>跳过2行，显示三行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from tt order by id desc <span class="built_in">limit</span> 2,3;</span><br><span class="line">+------+----------+</span><br><span class="line">| id   | name     |</span><br><span class="line">+------+----------+</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    3 | lisi     |</span><br><span class="line">|    1 | zhangsan |</span><br><span class="line">+------+----------+</span><br><span class="line">3 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/mysql/">mysql</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+    </div>
+
       
       <div class="clearfix"></div>
     </div>
